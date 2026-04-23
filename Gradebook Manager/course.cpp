@@ -70,13 +70,17 @@ void Course::displayRoster() const
 
 double Course::getCourseAverage() const
 {
-    double totalAverage = 0;
-
-    for(int i = 0; i < numStudents; i++) {
-        totalAverage += roster[i]->getAverage();
+    if(numStudents == 0) {
+        return 0.0;
     }
 
-    return totalAverage / numStudents;
+    double AveragesSum = 0;
+
+    for(int i = 0; i < numStudents; i++) {
+        AveragesSum += roster[i]->getAverage();
+    }
+
+    return AveragesSum / numStudents;
 }
 
 std::string Course::getCourseCode() const
