@@ -6,13 +6,14 @@ Student::Student(int id, std::string name)
     record.studentId = id;
     record.name = name;
     record.numScores = 0;
-    record.scores[record.numScores] = {};
 }
 
 void Student::addScore(double score)
 {
-    record.numScores++;
-    record.scores[record.numScores - 1] = score;
+    if(record.numScores < MAX_SCORES) {
+        record.scores[record.numScores - 1] = score;
+        record.numScores++;
+    }
 }
 
 void Student::displayInfo() const

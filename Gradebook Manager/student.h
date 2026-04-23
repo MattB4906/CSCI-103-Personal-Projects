@@ -3,11 +3,13 @@
 
 #include <string>
 
+const int MAX_SCORES = 100;
+
 struct StudentRecord {
     int studentId;
     std::string name;
     int numScores;
-    double scores[];
+    double scores[MAX_SCORES];
 };
 
 class Student {

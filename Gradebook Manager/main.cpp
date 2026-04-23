@@ -3,7 +3,6 @@
 using namespace std;
 
 int main() {
-    StudentRecord r;
     Student testStudent(123, "Test");
 
     testStudent.addScore(99.9);
