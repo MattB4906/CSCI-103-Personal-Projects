@@ -18,7 +18,7 @@ class Course {
 
         void enrollStudent(Student* s);
         void dropStudent(int studentId);
-        Student* findStudent(int studentId);
+        Student* findStudent(int studentId) const;
         void displayRoster() const;
         double getCourseAverage() const;
         std::string getCourseCode() const;

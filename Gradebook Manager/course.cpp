@@ -27,9 +27,64 @@ void Course::enrollStudent(Student* s)
     std::cout << "Course is full" << std::endl;
 }
 
+void Course::dropStudent(int studentId)
+{
+    int index = -1;
+
+    for(int i = 0; i < numStudents; i++) {
+        if(studentId == roster[i]->getRecord().studentId) {
+            index = i;
+            break;
+        }
+    }
+
+    if(index == -1) {
+        std::cout << "Student not found" << std::endl;
+        return;
+    }
+
+    for(int i = index; i < numStudents - 1; i++) {
+        roster[i] = roster[i + 1];
+    }
+
+    numStudents--;
+}
+
+Student* Course::findStudent(int studentId) const
+{
+    for(int i = 0; i < numStudents; i++) {
+        if(studentId == roster[i]->getRecord().studentId) {
+            return roster[i];
+        }
+    }
+
+    return nullptr;
+}
+
 void Course::displayRoster() const
 {
     for(int i = 0; i < numStudents; i++) {
         roster[i]->displayInfo();
     }
+}
+
+double Course::getCourseAverage() const
+{
+    double totalAverage = 0;
+
+    for(int i = 0; i < numStudents; i++) {
+        totalAverage += roster[i]->getAverage();
+    }
+
+    return totalAverage / numStudents;
+}
+
+std::string Course::getCourseCode() const
+{
+    return courseCode;
+}
+
+std::string Course::getCourseName() const
+{
+    return courseName;
 }
