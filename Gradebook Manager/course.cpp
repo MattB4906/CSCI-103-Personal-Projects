@@ -74,13 +74,13 @@ double Course::getCourseAverage() const
         return 0.0;
     }
 
-    double AveragesSum = 0;
+    double averagesSum = 0;
 
     for(int i = 0; i < numStudents; i++) {
-        AveragesSum += roster[i]->getAverage();
+        averagesSum += roster[i]->getAverage();
     }
 
-    return AveragesSum / numStudents;
+    return averagesSum / numStudents;
 }
 
 std::string Course::getCourseCode() const
