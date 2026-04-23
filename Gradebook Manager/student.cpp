@@ -33,23 +33,26 @@ double Student::getAverage() const
 
 std::string Student::getLetterGrade() const
 {
+
+    double average = getAverage();
+
     if(record.numScores == 0) {
         return "No scores inserted";
     }
 
-    if(getAverage() >= 90.0) {
+    if(average >= 90.0) {
         return "A";
     }
 
-    else if(getAverage() >= 80.0) {
+    else if(average >= 80.0) {
         return "B";
     }
 
-    else if(getAverage() >= 70) {
+    else if(average >= 70.0) {
         return "C";
     }
 
-    else if(getAverage() >= 60 ) {
+    else if(average >= 60.0) {
         return "D";
     }
 
