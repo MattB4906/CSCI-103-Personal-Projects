@@ -11,7 +11,7 @@ Student::Student(int id, std::string name)
 void Student::addScore(double score)
 {
     if(record.numScores < MAX_SCORES) {
-        record.scores[record.numScores - 1] = score;
+        record.scores[record.numScores] = score;
         record.numScores++;
     }
 }
