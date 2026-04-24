@@ -37,7 +37,7 @@ void handleAddCourse(Gradebook& gb)
     cout << "Course added successfully!" << endl;
 }
 
-void handleViewAllCourse(Gradebook& gb)
+void handleViewAllCourses(Gradebook& gb)
 {
     if(gb.getNumCourses() == 0) {
         cout << "No courses to display" << endl;
@@ -167,13 +167,54 @@ void handleViewCourseStats(Gradebook& gb) {
     cout << "Course average letter grade: " << averageLetterGrade << endl;
 }
 
+void handleSaveData(Gradebook& gb)
+{
+    string nameStart = "data/";
+    string filename, finalFileName;
+
+    cout << "File name:" << endl;
+    getline(cin, filename);
+
+    finalFileName = nameStart + filename + ".txt";
+
+    gb.saveToFile(finalFileName);
+}
+
+void handleLoadData(Gradebook& gb)
+{
+    string nameStart = "data/";
+    string filename, finalFileName;
+
+    cout << "File name:" << endl;
+    getline(cin, filename);
+
+    finalFileName = nameStart + filename + ".txt";
+
+    gb.loadFromFile(finalFileName);
+}
+
 int main() {
-    Gradebook myGradebook(10);
+    Gradebook gb(10);
     int choice;
 
     while(true) {
+        displayMenu();
 
+        if(!getValidIntInput(choice)) {
+            continue;
+        }
+
+        switch(choice) {
+            case 1: handleAddCourse(gb); break;
+            case 2: handleViewAllCourses(gb); break;
+            case 3: handleEnrollStudent(gb); break;
+            case 4: handleAddGrade(gb); break;
+            case 5: handleViewStudentReport(gb); break;
+            case 6: handleViewCourseStats(gb); break;
+            case 7: handleSaveData(gb); break;
+            case 8: handleLoadData(gb); break;
+            case 9: return 0;
+            default: cout << "Invalid option" << endl;
+        }
     }
-
-    return 0;
 }
