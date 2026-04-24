@@ -1,6 +1,6 @@
 #include <iostream>
 #include <limits>
-#include "util.h"
+#include "utils.h"
 
 double calculateWeightedAverage(double scores[], double weights[], int size)
 {
@@ -61,12 +61,14 @@ bool isValidScore(double score)
 void clearInputBuffer()
 {
     std::cin.clear();
-    std::cin.ignore('\n', std::numeric_limits<std::streamsize>::max());
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void printDivider(char c, int length)
 {
     for(int i = 0; i < length; i++) {
-        std::cout << c << '\n'; 
+        std::cout << c; 
     }
+
+    std::cout << '\n';
 }
