@@ -21,6 +21,8 @@ void Course::enrollStudent(Student* s)
     if(numStudents < capacity) {
         roster[numStudents] = s;
         numStudents++;
+        
+        return;
     }
 
     std::cout << "Course is full" << std::endl;

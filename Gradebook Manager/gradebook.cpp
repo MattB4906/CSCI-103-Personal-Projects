@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "gradebook.h"
 
 Gradebook::Gradebook(int initialCapacity)
@@ -20,7 +21,11 @@ void Gradebook::addCourse(Course* c)
     if(numCourses < capacity) {
         courses[numCourses] = c;
         numCourses++;
+
+        return;
     }
+
+    std::cout << "Gradebook is full" << std::endl;
 }
 
 void Gradebook::removeCourse(std::string courseCode)
@@ -72,9 +77,11 @@ void Gradebook::saveToFile(std::string filename) const
 
     if(ofile.is_open()) {
         for(int i = 0; i < numCourses; i++) {
-            ofile << courses[i]->getCourseCode() << ", " << courses[i]->getCourseName() << ", ";
+            ofile << courses[i]->getCourseCode() << "," << courses[i]->getCourseName() << ",";
             for(int j = 0; j < courses[i]->getNumStudents(); j++) {
-                courses[j]->getStudentAt(j);
+                Student* s = courses[i]->getStudentAt(j);
+                StudentRecord r = s->getRecord();
+                ofile << r.studentId << "," << r.name << "," << r.numScores << "," << r.scores << "\n";
             }
         }
 
@@ -94,8 +101,38 @@ void Gradebook::loadFromFile(std::string filename)
     std::ifstream ifile(filename);
 
     if(ifile.is_open()) {
-        for(int i = 0; i < numCourses; i++) {
-            std::getline(ifile, courses[i], ", ");
+        std::string line;
+
+        while(std::getline(ifile, line)) {
+            std::stringstream ss(line);
+            std::string token;
+
+            std::getline(ss, token, ',');
+            if(findCourse(token) != nullptr) {
+                std::cout << "Course code already exists" << std::endl;
+                return;
+            }
+
+            std::string courseCode = token; 
+
+            std::getline(ss, token, ',');
+            std::string courseName = token;
+            Course* c = new Course(courseCode, courseName, 30);
+
+            std::getline(ss, token, ',');
+            int studentId = std::stoi(token);
+
+            std::getline(ss, token, ',');
+            std::string studentName = token;
+
+            Student* s = new Student(studentId, studentName);
+
+            while(std::getline(ss, token, ',')) {
+                double score = std::stod(token);
+                s->addScore(score);
+            }
+
+            c->enrollStudent(s);
         }
         
         ifile.close();

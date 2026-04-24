@@ -13,7 +13,11 @@ void Student::addScore(double score)
     if(record.numScores < MAX_SCORES) {
         record.scores[record.numScores] = score;
         record.numScores++;
+
+        return;
     }
+
+    std::cout << "Max scores reached" << std::endl;
 }
 
 double Student::getAverage() const
