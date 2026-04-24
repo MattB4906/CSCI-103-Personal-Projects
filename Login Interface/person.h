@@ -8,17 +8,18 @@ class Person {
         std::string name;
         int age;
         int id;
-        int orgId; //Role Id Id needs to match to add / delete / and give access to some data
+        int orgId;
         std::string password;
 
     public:
-        Person(std::string name, int age, int id, std::string password);
+        Person(std::string name, int age, int id, int orgId, std::string password);
+        virtual ~Person();
         
         std::string getName();
         int getAge();
         int getId();
         int getOrgId();
-        void getInfo();
+        virtual void getInfo();
         void login();
         void logout();
 };
