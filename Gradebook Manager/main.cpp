@@ -204,6 +204,8 @@ int main() {
             continue;
         }
 
+        clearInputBuffer();
+
         switch(choice) {
             case 1: handleAddCourse(gb); break;
             case 2: handleViewAllCourses(gb); break;

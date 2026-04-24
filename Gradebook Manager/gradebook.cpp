@@ -51,7 +51,7 @@ void Gradebook::removeCourse(std::string courseCode)
     numCourses--;
 }
 
-int Gradebook::getNumCourses()
+int Gradebook::getNumCourses() const
 {
     return numCourses;
 }
