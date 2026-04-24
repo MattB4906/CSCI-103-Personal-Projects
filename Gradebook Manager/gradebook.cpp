@@ -77,8 +77,8 @@ void Gradebook::saveToFile(std::string filename) const
 
     if(ofile.is_open()) {
         for(int i = 0; i < numCourses; i++) {
-            ofile << courses[i]->getCourseCode() << "," << courses[i]->getCourseName() << ",";
             for(int j = 0; j < courses[i]->getNumStudents(); j++) {
+                ofile << courses[i]->getCourseCode() << "," << courses[i]->getCourseName() << ",";
                 Student* s = courses[i]->getStudentAt(j);
                 StudentRecord r = s->getRecord();
                 ofile << r.studentId << "," << r.name << ","; 
@@ -88,8 +88,10 @@ void Gradebook::saveToFile(std::string filename) const
                         ofile << r.scores[k] << ",";
                     }
                 }
-
-                ofile << r.scores[r.numScores - 1] << "\n";
+                
+                if(r.numScores != 0) {
+                    ofile << r.scores[r.numScores - 1] << "\n";
+                }
             }
         }
 
@@ -124,7 +126,6 @@ void Gradebook::loadFromFile(std::string filename)
             Course* c;
 
             if(findCourse(courseCode) != nullptr) {
-                std::cout << "Course code already exists" << std::endl;
                 c = findCourse(courseCode);
             }
 
