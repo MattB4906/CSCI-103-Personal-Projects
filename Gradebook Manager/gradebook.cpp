@@ -87,10 +87,10 @@ void Gradebook::saveToFile(std::string filename) const
                     if(k != r.numScores - 1) {
                         ofile << r.scores[k] << ",";
                     }
-                }
-                
-                if(r.numScores != 0) {
-                    ofile << r.scores[r.numScores - 1] << '\n';
+                    
+                    if(k == r.numScores - 1) {
+                        ofile << r.scores[k] << '\n';
+                    }
                 }
             }
         }
