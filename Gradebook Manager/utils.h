@@ -9,5 +9,7 @@ std::string assignLetterGrade(double avg);
 bool isValidScore(double score);
 void clearInputBuffer();
 void printDivider(char c, int length);
+bool getValidIntInput(int& value);
+bool getValidDoubleInput(double& value);
 
 #endif
