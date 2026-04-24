@@ -83,11 +83,19 @@ void Gradebook::saveToFile(std::string filename) const
                 StudentRecord r = s->getRecord();
                 ofile << r.studentId << "," << r.name << ","; 
                 
-                for(int k = 0; k < r.numScores - 1; k++) {
-                    ofile << r.scores[k] << ",";
+                for(int k = 0; k < r.numScores; k++) {
+                    if(r.numScores > 0) {
+                        if(k != r.numScores - 1) {
+                            ofile << r.scores[k] << ",";
+                        }
+
+                        else {
+                            ofile << r.scores[r.numScores - 1];
+                        }
+                    }
                 }
 
-                ofile << r.scores[r.numScores - 1] << '\n';
+                ofile << '\n';
             }
         }
 
