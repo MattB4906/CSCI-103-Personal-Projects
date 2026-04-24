@@ -73,7 +73,10 @@ void printDivider(char c, int length)
     std::cout << '\n';
 }
 
-bool getValidIntInput(int& value) {
+bool getValidIntInput(int& value)
+{
+    std::cin >> value;
+
     if(std::cin.fail()) {
         std::cout << "Input must be an integer" << std::endl;
         clearInputBuffer();
@@ -86,6 +89,8 @@ bool getValidIntInput(int& value) {
 
 bool getValidDoubleInput(double& value)
 {
+    std::cin >> value;
+
     if(std::cin.fail()) {
         std::cout << "Input must be a double" << std::endl;
         clearInputBuffer();
