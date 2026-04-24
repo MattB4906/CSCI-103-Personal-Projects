@@ -20,6 +20,7 @@ class Person {
         int getId();
         int getOrgId();
         void setPassword(std::string password);
+        void setOrgId(int orgId);
         virtual void getInfo();
         bool login();
         bool logout();

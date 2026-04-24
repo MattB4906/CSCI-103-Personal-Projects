@@ -7,15 +7,16 @@
 
 class Manager : public Person {
     private:
+        std::string department;
         std::map<int, std::vector<std::string>> employees;
 
     public:
-        Manager(std::string name, int age, int id, std::string password);
+        Manager(std::string name, int age, int id, int orgId, std::string password);
 
         void viewAllEmployees();
-        void addEmployee();
-        void removeEmployee();
-        void assignTask();
+        void addEmployee(std::string name, int age, int id, int orgId);
+        void removeEmployee(int id);
+        void assignTask(int id, std::string taskName);
 };
 
 #endif
