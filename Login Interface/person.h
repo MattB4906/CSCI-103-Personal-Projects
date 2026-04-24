@@ -19,9 +19,10 @@ class Person {
         int getAge();
         int getId();
         int getOrgId();
+        void setPassword(std::string password);
         virtual void getInfo();
-        void login();
-        void logout();
+        bool login();
+        bool logout();
 };
 
 #endif

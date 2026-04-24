@@ -2,11 +2,12 @@
 #define MANAGER_H
 
 #include <vector>
+#include <map>
 #include "person.h"
 
 class Manager : public Person {
     private:
-        std::vector<int> employees;
+        std::map<int, std::vector<std::string>> employees;
 
     public:
         Manager(std::string name, int age, int id, std::string password);
