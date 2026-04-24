@@ -3,7 +3,7 @@
 
 #include <string>
 
-double calculatedWeightedAverage(double scores[], double weight[], int size);
+double calculateWeightedAverage(double scores[], double weights[], int size);
 double recursiveSum(double scores[], int size);
 std::string assignLetterGrade(double avg);
 bool isValidScore(double score);
