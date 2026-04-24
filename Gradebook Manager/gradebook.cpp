@@ -2,9 +2,9 @@
 #include <fstream>
 #include "gradebook.h"
 
-Gradebook::Gradebook(int intialCapacity)
+Gradebook::Gradebook(int initialCapacity)
 {
-    capacity = intialCapacity;
+    capacity = initialCapacity;
     
     courses = new Course*[capacity];
     numCourses = 0;
@@ -17,8 +17,10 @@ Gradebook::~Gradebook()
 
 void Gradebook::addCourse(Course* c)
 {
-    courses[numCourses] = c;
-    numCourses++;
+    if(numCourses < capacity) {
+        courses[numCourses] = c;
+        numCourses++;
+    }
 }
 
 void Gradebook::removeCourse(std::string courseCode)
@@ -33,7 +35,7 @@ void Gradebook::removeCourse(std::string courseCode)
     }
 
     if(index == -1) {
-        std::cout << "Student not found" << std::endl;
+        std::cout << "Course not found" << std::endl;
         return;
     }
 
@@ -71,6 +73,9 @@ void Gradebook::saveToFile(std::string filename) const
     if(ofile.is_open()) {
         for(int i = 0; i < numCourses; i++) {
             ofile << courses[i]->getCourseCode() << ", " << courses[i]->getCourseName() << ", ";
+            for(int j = 0; j < courses[i]->getNumStudents(); j++) {
+                courses[j]->getStudentAt(j);
+            }
         }
 
         ofile.close();

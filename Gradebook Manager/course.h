@@ -23,6 +23,8 @@ class Course {
         double getCourseAverage() const;
         std::string getCourseCode() const;
         std::string getCourseName() const;
+        Student* getStudentAt(int index) const;
+        int getNumStudents() const;
 };
 
 #endif

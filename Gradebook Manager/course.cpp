@@ -21,7 +21,6 @@ void Course::enrollStudent(Student* s)
     if(numStudents < capacity) {
         roster[numStudents] = s;
         numStudents++;
-        return;
     }
 
     std::cout << "Course is full" << std::endl;
@@ -91,4 +90,14 @@ std::string Course::getCourseCode() const
 std::string Course::getCourseName() const
 {
     return courseName;
+}
+
+Student* Course::getStudentAt(int index) const
+{
+    return roster[index];
+}
+
+int Course::getNumStudents() const
+{
+    return numStudents;
 }
