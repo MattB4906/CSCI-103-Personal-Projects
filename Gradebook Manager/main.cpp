@@ -67,6 +67,8 @@ void handleEnrollStudent(Gradebook& gb)
     cout << "Enter student id:" << endl;
     getValidIntInput(studentId);
 
+    clearInputBuffer();
+
     cout << "Enter student name:" << endl;
     getline(cin, studentName);
 
