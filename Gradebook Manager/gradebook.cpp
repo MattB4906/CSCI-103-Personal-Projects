@@ -116,15 +116,22 @@ void Gradebook::loadFromFile(std::string filename)
             std::string token;
 
             std::getline(ss, token, ',');
-            if(findCourse(token) != nullptr) {
-                std::cout << "Course code already exists" << std::endl;
-            }
-
             std::string courseCode = token; 
-
+            
             std::getline(ss, token, ',');
             std::string courseName = token;
-            Course* c = new Course(courseCode, courseName, 30);
+
+            Course* c;
+
+            if(findCourse(courseCode) != nullptr) {
+                std::cout << "Course code already exists" << std::endl;
+                c = findCourse(courseCode);
+            }
+
+            else {
+                c = new Course(courseCode, courseName, 30);
+                addCourse(c);
+            }
 
             std::getline(ss, token, ',');
             int studentId = std::stoi(token);
