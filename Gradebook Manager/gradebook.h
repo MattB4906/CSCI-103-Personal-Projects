@@ -15,6 +15,7 @@ class Gradebook {
 
         void addCourse(Course* c);
         void removeCourse(std::string courseCode);
+        int getNumCourses();
         Course* findCourse(std::string courseCode) const;
         void displayAllCourses() const;
         void saveToFile(std::string filename) const;
