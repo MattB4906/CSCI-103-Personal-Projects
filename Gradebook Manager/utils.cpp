@@ -48,3 +48,25 @@ std::string assignLetterGrade(double avg)
 
     return "F";
 }
+
+bool isValidScore(double score)
+{
+    if(score >= 0 && score <= 100) {
+        return true;
+    }
+
+    return false;
+}
+
+void clearInputBuffer()
+{
+    std::cin.clear();
+    std::cin.ignore('\n', std::numeric_limits<std::streamsize>::max());
+}
+
+void printDivider(char c, int length)
+{
+    for(int i = 0; i < length; i++) {
+        std::cout << c << '\n'; 
+    }
+}

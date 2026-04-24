@@ -90,7 +90,7 @@ void Gradebook::saveToFile(std::string filename) const
                 }
                 
                 if(r.numScores != 0) {
-                    ofile << r.scores[r.numScores - 1] << "\n";
+                    ofile << r.scores[r.numScores - 1] << '\n';
                 }
             }
         }
