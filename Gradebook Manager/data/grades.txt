@@ -1,0 +1,3 @@
+CSCI103,Intro to Programming,1001,Alice Johnson,95,88
+CSCI103,Intro to Programming,1002,Bob Smith,72,65
+MATH225,Linear Algebra,1003,Carol White,55,60
