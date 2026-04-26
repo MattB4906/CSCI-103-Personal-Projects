@@ -15,7 +15,7 @@ void Manager::viewAllEmployees()
 
 void Manager::addEmployee(int id)
 {
-    employees[id].push_back("");
+    employees[id];
 }
 
 void Manager::removeEmployee(int id)
