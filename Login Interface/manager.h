@@ -14,7 +14,7 @@ class Manager : public Person {
         Manager(std::string name, int age, int id, int orgId, std::string password);
 
         void viewAllEmployees();
-        void addEmployee(std::string name, int age, int id, int orgId);
+        void addEmployee(int id);
         void removeEmployee(int id);
         void assignTask(int id, std::string taskName);
 };

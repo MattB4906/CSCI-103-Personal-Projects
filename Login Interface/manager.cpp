@@ -5,22 +5,25 @@ Manager::Manager(std::string name, int age, int id, int orgId, std::string passw
 
 void Manager::viewAllEmployees()
 {
-    for(size_t i = 0; i < employees.size(); i++) {
-        
+    for(auto i = employees.begin(); i != employees.end(); i++) {
+        std::cout << i->first << " ";
+        for(size_t j = 0; j < i->second.size(); j++) {
+            std::cout << i->second[j] << std::endl;
+        }
     }
 }
 
-void Manager::addEmployee(std::string name, int age, int id, int orgId)
+void Manager::addEmployee(int id)
 {
-    
+    employees[id].push_back("");
 }
 
 void Manager::removeEmployee(int id)
 {
-
+    employees.erase(id);
 }
 
 void Manager::assignTask(int id, std::string TaskName)
 {
-    
+    employees[id].push_back("Taskname");
 }

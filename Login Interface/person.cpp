@@ -1,7 +1,7 @@
 #include <iostream>
 #include "person.h"
 
-Person::Person(std::string, int age, int id, int orgId, std::string password)
+Person::Person(std::string name, int age, int id, int orgId, std::string password)
 {
     this->name = name;
     this->age = age;
@@ -72,9 +72,7 @@ bool Person::login()
 
 bool Person::logout()
 {
-    if(login()) {
-        return true;
-    }
+    std::cout << "You have been logged out" << std::endl;
 
-    return false;
+    return true;
 }
