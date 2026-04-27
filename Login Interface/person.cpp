@@ -1,7 +1,7 @@
 #include <iostream>
 #include "person.h"
 
-Person::Person(const std::string&, const std::string& username, int age, int id, int orgId, const std::string& password)
+Person::Person(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password)
 {
     this->name = name;
     this->username = username;
@@ -43,10 +43,10 @@ void Person::setName(const std::string& name)
     this->name = name;
 }
 
- void Person::setAge(int age)
- {
+void Person::setAge(int age)
+{
     this->age = age;
- }
+}
 
 void Person::setPassword(const std::string& password)
 {
