@@ -79,10 +79,18 @@ void Manager::removeTask(int id, const std::string& taskName)
 
 void Manager::viewEmployeeTask(int id) const
 {
+    if(employees.find(id) == employees.end()) {
+        std::cout << "Employee does not exist" << std::endl;
+
+        return;
+    }
+
+    auto& tasks = employees.at(id);
+
     std::cout << "Employee Tasks: ";
 
-    for(size_t i = 0; i < employees[id]->second.size(); i++) {
-            std::cout << employees[id]->second[i] << ", ";
+    for(size_t i = 0; i < tasks.size(); i++) {
+            std::cout << tasks[i] << ", ";
     }
 
     std::cout << std::endl;
