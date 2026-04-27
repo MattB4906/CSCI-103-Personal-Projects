@@ -87,7 +87,7 @@ void Manager::viewEmployeeTask(int id) const
 
     auto& tasks = employees.at(id);
 
-    std::cout << "Employee Tasks: ";
+    std::cout << "Employee tasks: ";
 
     for(size_t i = 0; i < tasks.size(); i++) {
             std::cout << tasks[i] << ", ";
