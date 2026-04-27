@@ -73,3 +73,38 @@ void Manager::removeTask(int id, const std::string& taskName)
     
     tasks.erase(tasks.begin() + index);
 }
+
+void Manager::viewEmployeeTask(int id) const
+{
+    std::cout << "Employee Tasks: ";
+
+    for(auto i = employees.begin(); i != employees.end(); i++) {
+        for(size_t j = 0; j < i->second.size(); j++) {
+            if(i->second.size() == 0) {
+                continue;
+            }
+
+            std::cout << i->second[j] << std::endl;
+        }
+    }
+}
+
+void Manager::getInfo() const
+{
+    std::cout << "Name: " <<  getName() << std::endl;
+    std::cout << "Age: " <<  getAge() << std::endl;
+    std::cout << "Id: " <<  getId() << std::endl;
+    std::cout << "Organization Id: " <<  getOrgId() << std::endl;
+    std::cout << "Department: " << getDepartment() << std::endl;
+}
+
+bool Manager::hasEmployee(int id) const
+{
+    for(auto i = employees.begin(); i != employees.end(); i++) {
+        if(i->first == id) {
+            return true;
+        }
+    }
+
+    return false;
+}
