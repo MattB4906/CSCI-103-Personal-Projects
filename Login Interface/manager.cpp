@@ -17,11 +17,14 @@ void Manager::viewAllEmployees()
 {
     for(auto i = employees.begin(); i != employees.end(); i++) {
         std::cout << "Employee id: " << i->first << " ";
-        for(size_t j = 0; j < i->second.size(); j++) {
-            if(i->second.size() == 0) {
-                continue;
-            }
+        
+        if(i->second.size() == 0) {
+            std::cout << "No task assigned" << std::endl;
 
+            continue;
+        }
+        
+        for(size_t j = 0; j < i->second.size(); j++) {
             std::cout << "Employee task: " << i->second[j] << std::endl;
         }
     }
@@ -54,7 +57,7 @@ void Manager::assignTask(int id, const std::string& taskName)
 
 void Manager::removeTask(int id, const std::string& taskName)
 {
-    auto& tasks = employees[id]->second;
+    auto& tasks = employees[id];
     int index = -1;
 
     for(size_t i = 0; i < tasks.size(); i++) {
@@ -78,15 +81,11 @@ void Manager::viewEmployeeTask(int id) const
 {
     std::cout << "Employee Tasks: ";
 
-    for(auto i = employees.begin(); i != employees.end(); i++) {
-        for(size_t j = 0; j < i->second.size(); j++) {
-            if(i->second.size() == 0) {
-                continue;
-            }
-
-            std::cout << i->second[j] << std::endl;
-        }
+    for(size_t i = 0; i < employees[id]->second.size(); i++) {
+            std::cout << employees[id]->second[i] << ", ";
     }
+
+    std::cout << std::endl;
 }
 
 void Manager::getInfo() const
