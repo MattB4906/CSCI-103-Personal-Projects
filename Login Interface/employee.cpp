@@ -17,7 +17,7 @@ void Employee::removeTask(const std::string& taskName)
 {
     int index = -1;
 
-    for(int i = 0; i < tasks.size(); i++) {
+    for(size_t i = 0; i < tasks.size(); i++) {
         if(tasks[i] == taskName) {
             index = i;
             break;
@@ -26,6 +26,8 @@ void Employee::removeTask(const std::string& taskName)
 
     if(index == -1) {
         std::cout << "Task not found" << std::endl;
+
+        return;
     }
 
     tasks.erase(tasks.begin() + index);
