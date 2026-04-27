@@ -20,7 +20,6 @@ void Manager::viewAllEmployees()
         
         if(i->second.size() == 0) {
             std::cout << "No task assigned" << std::endl;
-
             continue;
         }
         
@@ -63,7 +62,6 @@ void Manager::removeTask(int id, const std::string& taskName)
     for(size_t i = 0; i < tasks.size(); i++) {
         if(tasks[i] == taskName) {
             index = i;
-            
             break;
         }
     }

@@ -13,6 +13,24 @@ void Employee::addTask(const std::string& taskName)
     tasks.push_back(taskName);
 }
 
+void Employee::removeTask(const std::string& taskName)
+{
+    int index = -1;
+
+    for(int i = 0; i < tasks.size(); i++) {
+        if(tasks[i] == taskName) {
+            index = i;
+            break;
+        }
+    }
+
+    if(index == -1) {
+        std::cout << "Task not found" << std::endl;
+    }
+
+    tasks.erase(tasks.begin() + index);
+}
+
 void Employee::viewTasks() const
 {
     std::cout << "Employee tasks: ";
@@ -34,7 +52,7 @@ void Employee::setManagerReference(int managerId)
     managerReference = managerId;
 }
 
-void getInfo() const
+void Employee::getInfo() const
 {
     std::cout << "Name: " <<  getName() << std::endl;
     std::cout << "Age: " <<  getAge() << std::endl;

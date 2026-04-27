@@ -14,6 +14,7 @@ class Employee : public Person {
 
         const std::vector<std::string>& getTasks() const;
         void addTask(const std::string& taskName);
+        void removeTask(const std::string& taskName);
         void viewTasks() const;
         int getManagerReference() const;
         void setManagerReference(int managerId);
