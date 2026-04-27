@@ -1,9 +1,10 @@
 #include <iostream>
 #include "person.h"
 
-Person::Person(std::string name, int age, int id, int orgId, std::string password)
+Person::Person(const std::string&, const std::string& username, int age, int id, int orgId, const std::string& password)
 {
     this->name = name;
+    this->username = username;
     this->age = age;
     this->id = id;
     this->orgId = orgId;
@@ -12,29 +13,53 @@ Person::Person(std::string name, int age, int id, int orgId, std::string passwor
 
 Person::~Person() {}
 
-std::string Person::getName()
+std::string Person::getName() const
 {
     return name;
 } 
 
-int Person::getAge()
+std::string Person::getUsername() const
+{
+    return username;
+}
+
+int Person::getAge() const
 {
     return age;
 }
 
-int Person::getId()
+int Person::getId() const
 {
     return id;
 }
 
-int Person::getOrgId()
+int Person::getOrgId() const
 {
     return orgId;
 }
 
-void Person::setPassword(std::string password)
+void Person::setName(const std::string& name)
+{
+    this->name = name;
+}
+
+ void Person::setAge(int age)
+ {
+    this->age = age;
+ }
+
+void Person::setPassword(const std::string& password)
 {
     this->password = password;
+}
+
+bool Person::checkPassword(const std::string& enteredPassword, const std::string& enteredUsername)
+{
+    if(enteredPassword == password && enteredUsername == username) {
+        return true;
+    }
+
+    return false;
 }
 
 void Person::setOrgId(int orgId)
@@ -42,7 +67,7 @@ void Person::setOrgId(int orgId)
     this->orgId = orgId;
 }
 
-void Person::getInfo()
+void Person::getInfo() const
 {
     std::cout << "Name: " <<  name << std::endl;
     std::cout << "Age: " <<  age << std::endl;
@@ -52,18 +77,22 @@ void Person::getInfo()
 
 bool Person::login()
 {
-    std::string enteredName;
+    isLoggedIn = false;
+
+    std::string enteredUsername;
     std::string enteredPassword;
 
-    std::cout << "Name: ";
-    std::getline(std::cin, enteredName);
+    std::cout << "Username: ";
+    std::getline(std::cin, enteredUsername);
     std::cout << std::endl;
     
     std::cout << "Password: ";
     std::getline(std::cin, enteredPassword);
     std::cout << std::endl;
 
-    if(enteredPassword == password && enteredName == name) {
+    if(checkPassword(enteredPassword, enteredUsername)) {
+        isLoggedIn = true;
+
         return true;
     }
 
@@ -72,7 +101,13 @@ bool Person::login()
 
 bool Person::logout()
 {
-    std::cout << "You have been logged out" << std::endl;
+    if(isLoggedIn) {
+        isLoggedIn = false;
+        
+        std::cout << "You have been logged out" << std::endl;
+    
+        return true;
+    }
 
-    return true;
+    return false;
 }
