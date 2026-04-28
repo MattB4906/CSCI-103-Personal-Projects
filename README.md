@@ -6,7 +6,7 @@ This repository contains personal C++ projects developed alongside USC's **CSCI-
 
 **Matteo Benvenuti**  
 University of Southern California  
-B.S. Computer Science
+B.S. Computer Science and Business Administration (CSBA)
 
 ## Projects
 
