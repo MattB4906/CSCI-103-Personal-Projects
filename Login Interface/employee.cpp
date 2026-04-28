@@ -1,7 +1,10 @@
 #include <iostream>
 #include "employee.h"
 
-Employee::Employee(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password) : Person(name, username, age, id, orgId, password) {}
+Employee::Employee(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password, int managerReference) : Person(name, username, age, id, orgId, password)
+{
+    this->managerReference = managerReference;
+}
 
 const std::vector<std::string>& Employee::getTasks() const
 {

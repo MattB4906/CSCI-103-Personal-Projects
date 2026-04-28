@@ -10,7 +10,7 @@ class Employee : public Person {
         std::vector<std::string> tasks;
     
     public:
-        Employee(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password);
+        Employee(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password, int managerReference);
 
         const std::vector<std::string>& getTasks() const;
         void addTask(const std::string& taskName);

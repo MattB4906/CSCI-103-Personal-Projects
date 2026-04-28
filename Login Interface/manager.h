@@ -11,7 +11,7 @@ class Manager : public Person {
         std::map<int, std::vector<std::string>> employees;
 
     public:
-        Manager(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password);
+        Manager(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& passwor, const std::string& department);
 
         std::string getDepartment() const;
         void setDepartment(const std::string& department);

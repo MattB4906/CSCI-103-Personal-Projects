@@ -1,7 +1,10 @@
 #include <iostream>
 #include "manager.h"
 
-Manager::Manager(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password) : Person(name, username, age, id, orgId, password) {}
+Manager::Manager(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password, const std::string& department) : Person(name, username, age, id, orgId, password)
+{
+    this->department = department;
+}
 
 std::string Manager::getDepartment() const
 {
