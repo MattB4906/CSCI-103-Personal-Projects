@@ -6,11 +6,19 @@
 
 class Consumer : public Person {
     private:
-        int accountBalance;
+        double accountBalance;
         std::map<std::string, double> purchaseHistory;
 
     public:
-        void viewPurchaseHistory();
+        Consumer(const std::string& name, const std::string& username, int age, int id, int orgId, const std::string& password, double accountBalance);
+
+        double getAccountBalance() const;
+        double getTotalSpent() const;
+        void setAccountBalance(double accountBalance);
+        void viewPurchaseHistory() const;
+        void getInfo() const;
+        void clearPurchaseHistory();
+        bool makePurchase(const std::string& itemName, double price);
 };
 
 #endif
