@@ -5,7 +5,8 @@
 
 using namespace std;
 
-void displayMenu() {
+void displayMenu()
+{
     cout << "1. Add Course" << endl;
     cout << "2. View All Course" << endl;
     cout << "3. Enroll Student" << endl;
@@ -117,7 +118,8 @@ void handleAddGrade(Gradebook& gb)
     studentPointer->addScore(score);
 }
 
-void handleViewStudentReport(Gradebook& gb) {
+void handleViewStudentReport(Gradebook& gb)
+{
     string courseCode;
     int studentId;
 
@@ -146,7 +148,8 @@ void handleViewStudentReport(Gradebook& gb) {
     studentPointer->displayInfo();
 }
 
-void handleViewCourseStats(Gradebook& gb) {
+void handleViewCourseStats(Gradebook& gb)
+{
     string courseCode, averageLetterGrade;
     double courseAverage;
 
