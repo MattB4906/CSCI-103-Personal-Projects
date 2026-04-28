@@ -32,7 +32,7 @@ void managerMenu(Manager& m)
 {
     int option;
 
-    while(!(m.logout())) {
+    while(true) {
         cout << "Select an option below:" << endl;
         cout << "1. View all employees" << endl;
         cout << "2. Add employee" << endl;
@@ -102,12 +102,17 @@ void managerMenu(Manager& m)
 
             m.viewEmployeeTask(id);
         }
+
+        if(option == 7) {
+            m.logout();
+            break;
+        }
     }
 }
 
 void employeeMenu(Employee& e)
 {
-    while(!(e.logout())) {
+    while(true) {
         int option;
 
         cout << "Select an option below:" << endl;
@@ -138,12 +143,17 @@ void employeeMenu(Employee& e)
         if(option == 3) {
             e.getInfo();
         }
+
+        if(option == 4) {
+            e.logout();
+            break;
+        }
     }
 }
 
 void consumerMenu(Consumer& c)
 {
-    while(!(c.logout())) {
+    while(true) {
         int option;
         
         cout << "Select an option below:" << endl;
@@ -184,6 +194,11 @@ void consumerMenu(Consumer& c)
         if(option == 4) {
             c.clearPurchaseHistory();
         }
+
+        if(option == 5) {
+            c.logout();
+            break;
+        }
     }
 }
 
@@ -216,6 +231,8 @@ int main() {
                 consumerMenu(consumer);
             }
         }
+
+        choice = displayRoleMenu();
     }
 
     return 0;
