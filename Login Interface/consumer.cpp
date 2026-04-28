@@ -13,12 +13,6 @@ double Consumer::getAccountBalance() const
 
 double Consumer::getTotalSpent() const
 {
-    if(purchaseHistory.size() == 0) {
-        std::cout << "No purchases made" << std::endl;
-
-        return;
-    }
-
     double runningTotal = 0;
 
     for(auto i = purchaseHistory.begin(); i != purchaseHistory.end(); i++) {
