@@ -5,24 +5,21 @@
 
 bool Utils::isValidDate(const std::string& date)
 {
-    bool isValidDate = false;
+    if(date.length() != 10 && date[4] != '-' && date[7] != '-') {
+        return false;
+    }
 
-    if(date.length() == 10 && date[4] == '-' && date[7] == '-') {
-        for(int i = 0; i < 10; i++) {
-            if(i == 4 || i == 7) {
-                continue;
-            }
+    for(int i = 0; i < 10; i++) {
+        if(i == 4 || i == 7) {
+            continue;
+        }
 
-            if(!(isdigit(date[i]))) {
-                isValidDate = false;
-                break;
-            }
-            
-            isValidDate = true;
+        if(!isdigit(date[i])) {
+            return false;
         }
     }
 
-    return isValidDate;
+    return true;
 }
 
 std::string Utils::extractMonth(const std::string& date)
