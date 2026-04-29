@@ -14,6 +14,7 @@ bool Utils::isValidDate(const std::string& date)
             }
 
             if(!(isdigit(date[i]))) {
+                isValidDate = false;
                 break;
             }
             
@@ -80,9 +81,11 @@ std::string Utils::getValidString(const std::string& prompt)
     std::string input;
 
     std::cout << prompt << std::endl;
+    std::getline(std::cin, input);
     
-    while(!std::getline(std::cin, input)) {
+    while(input.empty()) {
         std::cout << "Invalid input. Try again: ";
+        std::getline(std::cin, input);
     }
 
     return input;

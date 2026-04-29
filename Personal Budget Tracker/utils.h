@@ -11,6 +11,6 @@ namespace Utils {
     double getValidDouble(const std::string& prompt);
     std::string getValidDate(const std::string& prompt);
     std::string getValidString(const std::string& prompt);
-};
+}
 
 #endif
