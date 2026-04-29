@@ -21,6 +21,7 @@ class Category {
         std::string getName() const;
         double getTotalSpent() const;
         double getBudgetLimit() const;
+        int getNumTransactions() const;
         double getRemainingBudget() const;
         bool isOverBudget() const;
         void displayTransactions() const;

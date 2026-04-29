@@ -76,6 +76,11 @@ double Category::getBudgetLimit() const
     return budgetLimit;
 }
 
+int Category::getNumTransactions() const
+{
+    return numTransactions;
+}
+
 double Category::getRemainingBudget() const
 {
     return budgetLimit - getTotalSpent(); 
