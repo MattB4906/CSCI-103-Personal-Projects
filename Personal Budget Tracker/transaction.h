@@ -15,6 +15,9 @@ class Transaction {
 
         bool operator<(const Transaction& other) const;
         bool operator==(const Transaction& other) const;
+        std::string getDescription() const;
+        double getAmount() const;
+        std::string getDate() const;
         void display() const;
         std::string toFileString() const;
         static Transaction fromFileString(const std::string line);

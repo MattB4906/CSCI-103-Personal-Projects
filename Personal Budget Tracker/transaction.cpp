@@ -24,6 +24,21 @@ bool Transaction::operator==(const Transaction& other) const
     return description == other.description && amount == other.amount && date == other.date && categoryName == other.categoryName;
 }
 
+std::string Transaction::getDescription() const
+{
+    return description;
+}
+
+double Transaction::getAmount() const
+{
+    return amount;
+}
+
+std::string Transaction::getDate() const
+{
+    return date;
+}
+
 void Transaction::display() const
 {
     std::cout << "Description: " << description << std::endl;
