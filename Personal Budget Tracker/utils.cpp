@@ -16,9 +16,9 @@ bool Utils::isValidDate(const std::string& date)
             if(!(isdigit(date[i]))) {
                 break;
             }
+            
+            isValidDate = true;
         }
-
-        isValidDate = true;
     }
 
     return isValidDate;
