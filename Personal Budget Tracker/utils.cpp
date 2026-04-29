@@ -5,7 +5,7 @@
 
 bool Utils::isValidDate(const std::string& date)
 {
-    if(date.length() != 10 && date[4] != '-' && date[7] != '-') {
+    if(date.length() != 10 || date[4] != '-' || date[7] != '-') {
         return false;
     }
 
