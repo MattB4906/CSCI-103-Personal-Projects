@@ -11,16 +11,17 @@ class Transaction {
         std::string categoryName;
 
     public:
-        Transaction(const std::string& description, double amount, const std::string& date, const std::string categoryName);
+        Transaction(const std::string& description, double amount, const std::string& date, const std::string& categoryName);
 
         bool operator<(const Transaction& other) const;
         bool operator==(const Transaction& other) const;
         std::string getDescription() const;
         double getAmount() const;
         std::string getDate() const;
+        std::string getCategoryName() const;
         void display() const;
         std::string toFileString() const;
-        static Transaction fromFileString(const std::string line);
+        static Transaction fromFileString(const std::string& line);
 };
 
 #endif

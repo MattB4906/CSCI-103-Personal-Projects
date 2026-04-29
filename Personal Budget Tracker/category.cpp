@@ -21,14 +21,23 @@ Category::~Category()
 void Category::addTransaction(Transaction* t)
 {
     if(numTransactions == capacity) {
-        std::cout << "Category is full" << std::endl;
+        int newCapacity = capacity + 1;
 
-        return;
+        Transaction** newTransactions = new Transaction*[newCapacity];
+
+        for(int i = 0; i < numTransactions; i++) {
+            newTransactions[i] = transactions[i];
+        }
+
+        delete[] transactions;
+
+        transactions = newTransactions;
+        capacity = newCapacity;
     }
 
-    numTransactions++;
+    transactions[numTransactions] = t;
 
-    transactions[numTransactions - 1] = t;
+    numTransactions++;
 }
 
 void Category::removeTransaction(int index)
@@ -40,6 +49,11 @@ void Category::removeTransaction(int index)
     }
 
     numTransactions--;
+}
+
+std::string Category::getName() const
+{
+    return name;
 }
 
 double Category::getTotalSpent() const
@@ -64,13 +78,7 @@ double Category::getRemainingBudget() const
 
 bool Category::isOverBudget() const
 {
-    double amountRemaining = budgetLimit - getTotalSpent();
-
-    if(amountRemaining >= 0) {
-        return false;
-    }
-
-    return true;
+    return getTotalSpent() > budgetLimit;
 }
 
 void Category::displayTransactions() const

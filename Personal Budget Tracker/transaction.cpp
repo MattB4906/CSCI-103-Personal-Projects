@@ -2,7 +2,7 @@
 #include <sstream>
 #include "transaction.h"
 
-Transaction::Transaction(const std::string& description, double amount, const std::string& date, const std::string categoryName)
+Transaction::Transaction(const std::string& description, double amount, const std::string& date, const std::string& categoryName)
 {
     this->description = description;
     this->amount = amount;
@@ -39,6 +39,11 @@ std::string Transaction::getDate() const
     return date;
 }
 
+std::string Transaction::getCategoryName() const
+{
+    return categoryName;
+}
+
 void Transaction::display() const
 {
     std::cout << "Description: " << description << std::endl;
@@ -52,7 +57,7 @@ std::string Transaction::toFileString() const
     return description + "|" + std::to_string(amount) + "|" + date + "|" + categoryName; 
 }
 
-Transaction Transaction::fromFileString(const std::string line)
+Transaction Transaction::fromFileString(const std::string& line)
 {
     std::stringstream ss(line);
 

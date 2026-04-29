@@ -18,6 +18,7 @@ class Category {
 
         void addTransaction(Transaction* t);
         void removeTransaction(int index);
+        std::string getName() const;
         double getTotalSpent() const;
         double getRemainingBudget() const;
         bool isOverBudget() const;
