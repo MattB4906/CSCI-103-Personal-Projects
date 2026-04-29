@@ -20,9 +20,11 @@ class Category {
         void removeTransaction(int index);
         std::string getName() const;
         double getTotalSpent() const;
+        double getBudgetLimit() const;
         double getRemainingBudget() const;
         bool isOverBudget() const;
         void displayTransactions() const;
+        void displaySummary() const;
         void sortByDate();
         Transaction* findTransaction(const std::string& description) const;
 };

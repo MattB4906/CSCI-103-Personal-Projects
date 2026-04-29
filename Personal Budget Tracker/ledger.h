@@ -13,13 +13,13 @@ class Ledger {
         Ledger(int capacity);
         ~Ledger();
 
-        Category* findCategory(const std::string& name);
+        Category* findCategory(const std::string& name) const;
         void addTransactionToCategory(Transaction* t);
         double getTotalSpent() const;
         double getTotalBudgetLimit() const;
         double getTotalRemainingBudget() const;
         void displayAllCategories() const;
-        void displayCateogry(const std::string& name) const;
+        void displayCategory(const std::string& name) const;
         int getNumCategories() const;
 };
 

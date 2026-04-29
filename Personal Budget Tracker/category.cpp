@@ -71,6 +71,11 @@ double Category::getTotalSpent() const
     return runningTotal;
 }
 
+double Category::getBudgetLimit() const
+{
+    return budgetLimit;
+}
+
 double Category::getRemainingBudget() const
 {
     return budgetLimit - getTotalSpent(); 
@@ -86,6 +91,22 @@ void Category::displayTransactions() const
     for(int i = 0; i < numTransactions; i++) {
         transactions[i]->display();
     }
+}
+
+void Category::displaySummary() const
+{
+    std::cout << "Name: " << name << std::endl;
+    std::cout << "Total spent: " << getTotalSpent() << std::endl;
+    std::cout << "Remaining budget: " << getRemainingBudget() << std::endl;
+    std::cout << "Is over budget: ";
+
+    if(isOverBudget()) {
+        std::cout << "Yes" << std::endl;
+
+        return;
+    }
+
+    std::cout << "No" << std::endl;
 }
 
 void Category::sortByDate()
