@@ -13,6 +13,8 @@ class Ledger {
         Ledger(int capacity);
         ~Ledger();
 
+        void addCategory(Category* c);
+        void removeCategory(const std::string& name);
         Category* findCategory(const std::string& name) const;
         void addTransactionToCategory(Transaction* t);
         double getTotalSpent() const;

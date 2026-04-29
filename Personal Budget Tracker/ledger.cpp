@@ -1,9 +1,9 @@
 #include <iostream>
 #include "ledger.h"
 
-Ledger::Ledger(int capacity)
+Ledger::Ledger(int maxCapacity)
 {
-    this->capacity = capacity;
+    capacity = maxCapacity;
     numCategories = 0;
     categories = new Category*[capacity];
 }
@@ -15,6 +15,48 @@ Ledger::~Ledger()
     }
 
     delete[] categories;
+}
+
+void Ledger::addCategory(Category* c)
+{
+    if(numCategories == capacity) {
+        int newCapacity = capacity * 2;
+
+        Category** newCategories = new Category*[newCapacity];
+
+        for(int i = 0; i < numCategories; i++) {
+            newCategories[i] = categories[i];
+        }
+
+        delete[] categories;
+
+        categories = newCategories;
+        capacity = newCapacity;
+    }
+
+    categories[numCategories] = c;
+
+    numCategories++;
+}
+
+void Ledger::removeCategory(const std::string& name)
+{
+    int index = -1;
+
+    for(int i = 0; i < numCategories; i++) {
+        if(categories[i]->getName() == name) {
+            index = i;
+            break;
+        }
+    }
+
+    delete categories[index];
+
+    for(int i = index; i < numCategories - 1; i++) {
+        categories[i] = categories[i + 1];
+    }
+
+    numCategories--;
 }
 
 Category* Ledger::findCategory(const std::string& name) const
@@ -75,6 +117,8 @@ void Ledger::displayAllCategories() const
 {
     if(numCategories == 0) {
         std::cout << "No categories to display" << std::endl;
+
+        return;
     }
 
     for(int i = 0; i < numCategories; i++) {
@@ -85,6 +129,12 @@ void Ledger::displayAllCategories() const
 void Ledger::displayCategory(const std::string& name) const
 {
     Category* categoryToDisplay = findCategory(name);
+
+    if(categoryToDisplay == nullptr) {
+        std::cout << "Category does not exist" << std::endl;
+
+        return;
+    }
 
     categoryToDisplay->displaySummary();
 }
