@@ -50,6 +50,12 @@ void Ledger::removeCategory(const std::string& name)
         }
     }
 
+    if(index == -1) {
+        std::cout << "Category not found" << std::endl;
+
+        return;
+    }
+
     delete categories[index];
 
     for(int i = index; i < numCategories - 1; i++) {
