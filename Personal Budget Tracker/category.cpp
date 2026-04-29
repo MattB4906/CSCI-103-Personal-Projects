@@ -21,7 +21,7 @@ Category::~Category()
 void Category::addTransaction(Transaction* t)
 {
     if(numTransactions == capacity) {
-        int newCapacity = capacity + 1;
+        int newCapacity = capacity * 2;
 
         Transaction** newTransactions = new Transaction*[newCapacity];
 
