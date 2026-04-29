@@ -54,6 +54,10 @@ double Utils::getValidDouble(const std::string& prompt)
 
         std::cout << "Invalid input. Try again: ";
     }
+
+    std::cin.ignore();
+
+    return value;
 }
 
 std::string Utils::getValidDate(const std::string& prompt)
@@ -67,6 +71,8 @@ std::string Utils::getValidDate(const std::string& prompt)
         std::cout << "Invalid input. Try again: ";
         std::getline(std::cin, date);
     }
+
+    return date;
 }
 
 std::string Utils::getValidString(const std::string& prompt)
@@ -74,9 +80,10 @@ std::string Utils::getValidString(const std::string& prompt)
     std::string input;
 
     std::cout << prompt << std::endl;
-    std::getline(std::cin, input);
     
     while(!std::getline(std::cin, input)) {
         std::cout << "Invalid input. Try again: ";
     }
+
+    return input;
 }
