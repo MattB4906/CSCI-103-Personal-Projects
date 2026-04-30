@@ -172,10 +172,10 @@ void Ledger::saveToFile(const std::string& filename) const
     }
 
     for(int i = 0; i < numCategories; i++) {
-        ofile << "CATEGORY|" + (*categories)->getName() << "|" << std::to_string((*categories)->getBudgetLimit()) << std::endl;
+        ofile << "CATEGORY|" + categories[i]->getName() << "|" << std::to_string((*categories)->getBudgetLimit()) << std::endl;
 
-        for(int j = 0; j < (*categories)->getNumTransactions(); j++) {
-            ofile << "TRANSACTION|" << (*categories)->getTransaction(j)->toFileString();
+        for(int j = 0; j < categories[i]->getNumTransactions(); j++) {
+            ofile << "TRANSACTION|" << (*categories)->getTransaction(j)->toFileString() << std::endl;
         }
     }
 
@@ -200,17 +200,21 @@ void Ledger::loadFromFile(const std::string& filename)
 
         int index = line.find('|');
 
-        if(index == 8) {
+        std::string prefix = line.substr(0, index);
+
+        if(prefix == "CATEGORY") {
             std::string rest = line.substr(9);
             std::stringstream ss(rest);
             std::string name, budgetLimit;
-
+    
             std::getline(ss, name, '|');
             std::getline(ss, budgetLimit, '|');
             double budget = std::stod(budgetLimit);
+
+            addCategory(new Category(name, budget));
         }
 
-        else if(index == 11) {
+        else if(prefix == "TRANSACTION") {
             std::string rest = line.substr(12);
 
             Transaction t = Transaction::fromFileString(rest);
