@@ -14,7 +14,7 @@ class Report {
         void printOverallSummary() const;
         void printCategoryBreakdown() const;
         void printOverBudgetWarnings() const;
-        void printTopExpense(int n) const;
+        void printTopExpenses(int n) const;
         void printMonthlyReport(const std::string& month) const;
 };
 

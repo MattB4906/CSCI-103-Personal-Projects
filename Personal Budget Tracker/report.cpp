@@ -53,7 +53,7 @@ void Report::printOverBudgetWarnings() const
     }
 }
 
-void Report::printTopExpense(int n) const
+void Report::printTopExpenses(int n) const
 {
     int count = 0;
 
@@ -68,32 +68,38 @@ void Report::printTopExpense(int n) const
     Transaction** allTransactions = new Transaction*[count];
     int k = 0;
 
-    while (k != count) {
-        for(int i = 0; i < ledger.getNumCategories(); i++) {
-            Category* category = ledger.getCategory(i);
-            
-            int numTransactions = category->getNumTransactions();
-            
-            for(int j = 0; j < numTransactions; j++) {
-                allTransactions[i] = category->getTransaction(j);
-            }
+    for(int i = 0; i < ledger.getNumCategories(); i++) {
+        Category* category = ledger.getCategory(i);
+        
+        for(int j = 0; j < category->getNumTransactions(); j++) {
+            allTransactions[k] = category->getTransaction(j);
+            k++;
         }
     }
 
     for(int i = 0; i < count - 1; i++) {
         for(int j = i + 1; j < count; j++) {
-            if(allTransactions[j] < allTransactions[i]) {
+            if(allTransactions[j]->getAmount() > allTransactions[i]->getAmount()) {
                 Transaction* temp = allTransactions[i];
-                allTransactions[i] = allTransactions[k];
-                allTransactions[k] = temp; 
+                allTransactions[i] = allTransactions[j];
+                allTransactions[j] = temp; 
             }
         }
     }
     
     std::cout << "Your top expenses in order are:" << std::endl;
 
-    for(int i = count - 1; i < count - 1 - n; i--) {
-        std::cout << allTransactions[i] << std::endl;
+    if(n > count) {
+        std::cout << "Chosen value is greater than total number of transactions" << std::endl;
+
+        delete[] allTransactions;
+
+        return;
+    }
+
+    for(int i = 0; i < n; i++) {
+        allTransactions[i]->display();
+        Utils::printSeparator('-', 20);
     }
 
     delete[] allTransactions;
