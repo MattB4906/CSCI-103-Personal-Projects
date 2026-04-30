@@ -152,8 +152,6 @@ int Category::findTransactionIndex(const std::string& description) const
     for(int i = 0; i < getNumTransactions(); i++) {
         if(description == getTransaction(i)->getDescription()) {
             return i;
-
-            return;
         }
     }
 
