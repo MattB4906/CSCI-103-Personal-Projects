@@ -43,7 +43,7 @@ void Report::printOverBudgetWarnings() const
         Category* category = ledger.getCategory(i);
         
         if(category->isOverBudget()) {
-            std::cout << category->getName() << " is over budget by $" << category->getBudgetLimit() - category->getTotalSpent() << std::endl;
+            std::cout << category->getName() << " is over budget by $" << category->getTotalSpent() - category->getBudgetLimit() << std::endl;
             count++;
         }
     }
@@ -55,31 +55,48 @@ void Report::printOverBudgetWarnings() const
 
 void Report::printTopExpense(int n) const
 {
-
+    int count = 0;
 
     for(int i = 0; i < ledger.getNumCategories(); i++) {
         Category* category = ledger.getCategory(i);
         
         int numTransactions = category->getNumTransactions();
         
-        Transaction* transactionsCategory[numTransactions];
+        count += numTransactions;
+    }
 
-        for(int j = 0; j < numTransactions; j++) {
-            transactionsCategory[j] = category->getTransation(j);
-        }
+    Transaction** allTransactions = new Transaction*[count];
+    int k = 0;
 
-        for(int j = 0; j < numTransactions; j++) {
-            for(int k = j + 1; k < numTransactions - 1; k++) {
-                if(transactionsCategory[k] < transactionsCategory[j]) {
-                    Transaction* temp = transactionsCategory[k];
-                    transactionsCategory[k] = transactionsCategory[j];
-                    transactionsCategory[j] = temp;
-                }
+    while (k != count) {
+        for(int i = 0; i < ledger.getNumCategories(); i++) {
+            Category* category = ledger.getCategory(i);
+            
+            int numTransactions = category->getNumTransactions();
+            
+            for(int j = 0; j < numTransactions; j++) {
+                allTransactions[i] = category->getTransaction(j);
             }
         }
-
-        std::cout << "Top transaction for " << category->getName() << " is of $" << Utils::roundToTwo(transactionsCategory[numTransactions]->getAmount()) << std::endl;
     }
+
+    for(int i = 0; i < count - 1; i++) {
+        for(int j = i + 1; j < count; j++) {
+            if(allTransactions[j] < allTransactions[i]) {
+                Transaction* temp = allTransactions[i];
+                allTransactions[i] = allTransactions[k];
+                allTransactions[k] = temp; 
+            }
+        }
+    }
+    
+    std::cout << "Your top expenses in order are:" << std::endl;
+
+    for(int i = count - 1; i < count - 1 - n; i--) {
+        std::cout << allTransactions[i] << std::endl;
+    }
+
+    delete[] allTransactions;
 }
 
 void Report::printMonthlyReport(const std::string& month) const
@@ -90,8 +107,8 @@ void Report::printMonthlyReport(const std::string& month) const
         Category* category = ledger.getCategory(i);
 
         for(int j = 0; j < category->getNumTransactions(); j++) {
-            if(Utils::extractMonth(category->getTransation(j)->getDate()) == month) {
-                double amountSpent = category->getTransation(j)->getAmount();
+            if(Utils::extractMonth(category->getTransaction(j)->getDate()) == month) {
+                double amountSpent = category->getTransaction(j)->getAmount();
             
                 totalSpent += amountSpent;
                 std::cout << Utils::roundToTwo(amountSpent) << std::endl;

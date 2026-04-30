@@ -28,7 +28,7 @@ class Category {
         void displaySummary() const;
         void sortByDate();
         Transaction* findTransaction(const std::string& description) const;
-        Transaction* getTransation(int index) const;
+        Transaction* getTransaction(int index) const;
 };
 
 #endif
