@@ -172,10 +172,10 @@ void Ledger::saveToFile(const std::string& filename) const
     }
 
     for(int i = 0; i < numCategories; i++) {
-        ofile << "CATEGORY|" + categories[i]->getName() << "|" << std::to_string((*categories)->getBudgetLimit()) << std::endl;
+        ofile << "CATEGORY|" + categories[i]->getName() << "|" << std::to_string(categories[i]->getBudgetLimit()) << std::endl;
 
         for(int j = 0; j < categories[i]->getNumTransactions(); j++) {
-            ofile << "TRANSACTION|" << (*categories)->getTransaction(j)->toFileString() << std::endl;
+            ofile << "TRANSACTION|" << categories[i]->getTransaction(j)->toFileString() << std::endl;
         }
     }
 
