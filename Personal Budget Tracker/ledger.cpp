@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "ledger.h"
 
 Ledger::Ledger(int maxCapacity)
@@ -157,4 +159,65 @@ void Ledger::displayCategory(const std::string& name) const
 int Ledger::getNumCategories() const
 {
     return numCategories;
+}
+
+void Ledger::saveToFile(const std::string& filename) const
+{
+    std::ofstream ofile(filename);
+
+    if(ofile.fail()) {
+        std::cout << "Error opening file" << std::endl;
+
+        return;
+    }
+
+    for(int i = 0; i < numCategories; i++) {
+        ofile << "CATEGORY|" + (*categories)->getName() << "|" << std::to_string((*categories)->getBudgetLimit()) << std::endl;
+
+        for(int j = 0; j < (*categories)->getNumTransactions(); j++) {
+            ofile << "TRANSACTION|" << (*categories)->getTransaction(j)->toFileString();
+        }
+    }
+
+    ofile.close();
+}
+
+void Ledger::loadFromFile(const std::string& filename)
+{
+    std::ifstream ifile(filename);
+
+    if(ifile.fail()) {
+        std::cout << "No saved data found" << std::endl;
+
+        return;
+    }
+
+    std::string line;
+
+    while(std::getline(ifile, line)) {
+        std::stringstream ss(line);
+        std::string token;
+
+        int index = line.find('|');
+
+        if(index == 8) {
+            std::string rest = line.substr(9);
+            std::stringstream ss(rest);
+            std::string name, budgetLimit;
+
+            std::getline(ss, name, '|');
+            std::getline(ss, budgetLimit, '|');
+            double budget = std::stod(budgetLimit);
+        }
+
+        else if(index == 11) {
+            std::string rest = line.substr(12);
+
+            Transaction t = Transaction::fromFileString(rest);
+            
+            addTransactionToCategory(new Transaction(t));
+        }
+    }
+
+    ifile.close();
 }

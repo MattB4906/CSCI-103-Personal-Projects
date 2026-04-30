@@ -24,6 +24,8 @@ class Ledger {
         void displayAllCategories() const;
         void displayCategory(const std::string& name) const;
         int getNumCategories() const;
+        void saveToFile(const std::string& filename) const;
+        void loadFromFile(const std::string& filename);
 };
 
 #endif
