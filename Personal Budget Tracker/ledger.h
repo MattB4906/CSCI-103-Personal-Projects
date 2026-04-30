@@ -16,6 +16,7 @@ class Ledger {
         void addCategory(Category* c);
         void removeCategory(const std::string& name);
         Category* findCategory(const std::string& name) const;
+        Category* getCategory(int index) const;
         void addTransactionToCategory(Transaction* t);
         double getTotalSpent() const;
         double getTotalBudgetLimit() const;

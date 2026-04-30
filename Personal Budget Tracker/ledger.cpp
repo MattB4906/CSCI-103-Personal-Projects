@@ -76,6 +76,15 @@ Category* Ledger::findCategory(const std::string& name) const
     return nullptr;
 }
 
+Category* Ledger::getCategory(int index) const
+{
+    if(index >= numCategories) {
+        return nullptr;
+    }
+
+    return categories[index];
+}
+
 void Ledger::addTransactionToCategory(Transaction* t)
 {
     std::string category = t->getCategoryName();

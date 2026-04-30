@@ -137,3 +137,12 @@ Transaction* Category::findTransaction(const std::string& description) const
 
     return nullptr;
 }
+
+Transaction* Category::getTransation(int index) const
+{
+    if(index >= numTransactions) {
+        return nullptr;
+    }
+
+    return transactions[index];
+}
