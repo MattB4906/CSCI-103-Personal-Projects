@@ -95,15 +95,9 @@ void handleRemoveTransaction(Ledger* ledger)
         return;
     }
 
-    int index = -1;
+    int index = c->findTransactionIndex(description);
 
-    for(int i = 0; i < c->getNumTransactions(); i++) {
-        if(t == c->getTransaction(i)) {
-            index = i;
-        }
-    }
-
-    if(index = -1) {
+    if(index == -1) {
         cout << "Transaction does not exist" << endl;
 
         return;
@@ -131,13 +125,16 @@ void handleViewCategory(Ledger* ledger)
     while(choice != 4) {
         displayCategoryMenu();
 
-        choice = (int)Utils::getValidDouble("Enter double: ");
+        choice = (int)Utils::getValidDouble("Enter choice: ");
 
         switch(choice) {
             case 1: c->displaySummary();
+                    break;
             case 2: c->displayTransactions();
+                    break;
             case 3: c->sortByDate();
                     cout << "Sorted!" << endl;
+                    break;
             case 4: break;
             default: cout << "Invalid option";
         }
@@ -159,12 +156,17 @@ void handleReports(Ledger* ledger)
 
         switch(choice) {
             case 1: report.printOverallSummary();
+                    break;
             case 2: report.printCategoryBreakdown();
+                    break;
             case 3: report.printOverBudgetWarnings();
+                    break;
             case 4: n = (int)Utils::getValidDouble("Enter top expenses: ");
                     report.printTopExpenses(n);
+                    break;
             case 5: month = Utils::getValidString("Enter month (YYYY-MM): ");
                     report.printMonthlyReport(month);
+                    break;
             case 6: break;
             default: cout << "Invalid option";
         }
@@ -179,13 +181,21 @@ int main() {
     while(choice != 7) {
         displayMainMenu();
 
+        choice = (int)Utils::getValidDouble("Enter choice: ");
+
         switch(choice) {
             case 1: handleAddCategory(ledger);
+                    break;
             case 2: handleRemoveCategory(ledger);
+                    break;
             case 3: handleAddTransaction(ledger);
+                    break;
             case 4: handleRemoveTransaction(ledger);
+                    break;
             case 5: handleViewCategory(ledger);
+                    break;
             case 6: handleReports(ledger);
+                    break;
             case 7: cout << "Goodbye!";
                     break;
             default: cout << "Invalid option";
